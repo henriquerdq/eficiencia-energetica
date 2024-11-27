@@ -1,7 +1,10 @@
 package br.com.tcia.eficienciaenergetica.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 import java.time.LocalDate;
@@ -11,6 +14,9 @@ import java.util.Arrays;
 import br.com.tcia.eficienciaenergetica.utils.ConverterUtil;
 
 @Log4j2
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Data
 @Entity
 @Table(name = "arquivo_box")

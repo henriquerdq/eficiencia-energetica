@@ -42,7 +42,7 @@ public class ArquivoBoxService extends AbstractImportacaoArquivo {
             processarArquivo(processamento, tipoProcessamento, scanner, linhasComErro, dataInicio);
         } catch (Exception ex) {
             log.error(String.format("Erro no tratamento %s", ARQUIVO_BOX), ex);
-            emailService.enviaEMailErroCSVGenerico(processamento.getUsuario(), processamento.getNomeArquivo());
+            emailService.enviaEmailErroCSVGenerico(processamento.getUsuario(), processamento.getNomeArquivo());
             throw new SistemaException(ex);
         }
     }
@@ -112,7 +112,7 @@ public class ArquivoBoxService extends AbstractImportacaoArquivo {
 
         if (!processamento.getReprocessar()) {
             if (!linhasComErro.isEmpty()) {
-                emailService. enviaEMailErroCSVSerializado(ARQUIVO_BOX, ARQUIVO_COM_MUITAS_LINHAS_INVALIDAS, processamento.getUsuario(),
+                emailService. enviaEmailErroCSVSerializado(ARQUIVO_BOX, ARQUIVO_COM_MUITAS_LINHAS_INVALIDAS, processamento.getUsuario(),
                         processamento.getNomeArquivo(), linhasComErro, dataInicio, dataFim);
 
                 if (linhasComErro.size() > MAX_ERROS_PERMITIDOS) {
@@ -125,7 +125,7 @@ public class ArquivoBoxService extends AbstractImportacaoArquivo {
     }
 
     private void enviarEmailErroCabecalho(Processamento processamento, List<String> linhasComErro, LocalDateTime dataInicio) {
-        emailService.enviaEMailErroCSVSerializado(ARQUIVO_BOX, ARQUIVO_COM_CABECALHO_INVALIDO_PONTO_VIRGULA,
+        emailService.enviaEmailErroCSVSerializado(ARQUIVO_BOX, ARQUIVO_COM_CABECALHO_INVALIDO_PONTO_VIRGULA,
                 processamento.getUsuario(), processamento.getNomeArquivo(), linhasComErro, dataInicio, null);
     }
 }

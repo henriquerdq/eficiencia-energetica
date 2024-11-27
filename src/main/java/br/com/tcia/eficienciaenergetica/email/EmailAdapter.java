@@ -2,13 +2,13 @@ package br.com.tcia.eficienciaenergetica.email;
 
 import java.io.File;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
 import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +21,7 @@ public class EmailAdapter {
 
     public void enviarEmail(String from, String to, String subject, String message) {
         try {
-            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            var mimeMessage = mailSender.createMimeMessage();
             var helper = new MimeMessageHelper(mimeMessage, "UTF-8");
 
             helper.setFrom(from);
@@ -39,7 +39,7 @@ public class EmailAdapter {
 
     public void enviarComAnexo(String from, List<String> to, String subject, String message, File attachment) {
         try {
-            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            var mimeMessage = mailSender.createMimeMessage();
             var helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
             helper.setFrom(from);
@@ -47,7 +47,7 @@ public class EmailAdapter {
             helper.setSubject(subject);
             helper.setText(message, true);
 
-            if (attachment != null) {
+            if (Objects.nonNull(attachment)) {
                 helper.addAttachment(attachment.getName(), attachment);
             }
 
