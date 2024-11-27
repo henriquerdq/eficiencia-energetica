@@ -179,7 +179,7 @@ public class EmailService {
 	        String numeroLinha = linha.substring(0, separadorIndex);
 	        String conteudoLinha = linha.substring(separadorIndex + 1);
 
-	        ret.append(String.format("Linha: %s - Conteúdo: %s<br/>", numeroLinha, conteudoLinha));
+	        ret.append("Linha: %s - Conteúdo: %s<br/>".formatted(numeroLinha, conteudoLinha));
 	        i++;
 
 	        if (i >= 100) {

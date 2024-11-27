@@ -41,7 +41,7 @@ public class ArquivoBoxService extends AbstractImportacaoArquivo {
 
             processarArquivo(processamento, tipoProcessamento, scanner, linhasComErro, dataInicio);
         } catch (Exception ex) {
-            log.error(String.format("Erro no tratamento %s", ARQUIVO_BOX), ex);
+            log.error("Erro no tratamento %s".formatted(ARQUIVO_BOX), ex);
             emailService.enviaEmailErroCSVGenerico(processamento.getUsuario(), processamento.getNomeArquivo());
             throw new SistemaException(ex);
         }
