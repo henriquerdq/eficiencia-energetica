@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,6 @@ public class EmailService {
 
     private final EmailAdapter emailAdapter;
     private final AppConfigProperties appConfig;
-
 
 	public void enviaEmailCadastroAutorizado(UsuarioIdentificacao usuario) throws Exception {
 		HtmlTableGenerator htg = new HtmlTableGenerator();
@@ -165,18 +165,31 @@ public class EmailService {
 	}
 	
 	private String getLinhas(List<String> linhasComErro) {
-		int i = 0;
-		StringBuilder ret = new StringBuilder("");
-		if(linhasComErro != null) {
-			for(String d : linhasComErro) {
-				ret.append("Linha: " + d.substring(0, d.indexOf(";")) + " -Conteúdo: " + d.substring(d.indexOf(";") + 1, d.length()) + "<br/>");
-				i++;
-				if(i > 100) {
-					break;
-				}
-			}
-		}
-		return ret.toString();
+	    Objects.requireNonNull(linhasComErro, "A lista de linhas com erro não pode ser nula.");
+
+	    var ret = new StringBuilder();
+	    int i = 0;
+
+	    for (String linha : linhasComErro) {
+	        if (Objects.isNull(linha) || !linha.contains(";")) {
+	            continue;
+	        }
+
+	        int separadorIndex = linha.indexOf(";");
+	        String numeroLinha = linha.substring(0, separadorIndex);
+	        String conteudoLinha = linha.substring(separadorIndex + 1);
+
+	        ret.append(String.format("Linha: %s - Conteúdo: %s<br/>", numeroLinha, conteudoLinha));
+	        i++;
+
+	        if (i >= 100) {
+	            ret.append("... (Exibindo apenas as 100 primeiras linhas)<br/>");
+	            break;
+	        }
+	    }
+
+	    return ret.toString();
 	}
+
    
 }

@@ -4,10 +4,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
-@ConfigurationProperties
 public class HtmlTableGenerator {
 
 	private static final String COR_F7F7F7 = "F7F7F7";
@@ -18,12 +14,6 @@ public class HtmlTableGenerator {
 	private String corAtual = COR_FFFFFF;
 	private LinkedHashMap<String, Object> dados;
 	private boolean temRodape = true;
-	
-	@Value("${url_site}")
-	private String urlSite;
-
-	@Value("${empresa2}")
-	private String empresa;
 
 	public String montaTabela() {
 		StringBuilder html = new StringBuilder();
@@ -122,11 +112,8 @@ public class HtmlTableGenerator {
 	public void setTituloTabela(String msg) {
 		StringBuilder html = new StringBuilder();
 		html.append("<tr align=\"center\"><td align=\"center\">");
-		html.append("<img src=\"");
-		html.append(urlSite);
-		html.append("/javax.faces.resource/images/logo_tcia.png.html?ln=barcelona-layout\" alt=\"");
-		html.append(empresa);
-		html.append("\" width=\"120\"/></td>");
+		html.append("<img src=\"cid:logoTcia\" alt=\"Logo\" style=\"width:200px; height:auto;\">");
+		html.append("</td>");
 		html.append("<td><span align=\"center\"><strong>");
 		html.append(msg);
 		html.append("</strong></span></td></tr>");

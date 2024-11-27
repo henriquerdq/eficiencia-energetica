@@ -1,3 +1,15 @@
+app:
+  url-site: "https://ct.tcia.com.br"
+  empresa: "TCIA"
+  acessar-sistema: "Clique aqui para acessar o sistema"
+  empresa-principal: "Minha Empresa Principal"
+  cadastro-msg: "Mensagem de Confirmação de Cadastro"
+  ativacao-msg: "Sua conta foi ativada com sucesso"
+  recuperar-senha: "Recuperação de Senha"
+  entre-com-codigo-acima: "Insira o código acima no formulário"
+  acesse-msg: "Clique no link abaixo para acessar o sistema"
+  solicitacao-emitida: "Solicitação de Senha Realizada"
+  desativacao-msg: "Sua conta foi desativada"
 server:
   port: 8080
   servlet:
