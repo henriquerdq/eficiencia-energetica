@@ -20,18 +20,18 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @AllArgsConstructor
 @RestController
-@RequestMapping(value = "upload-arquivo-tv-box")
-public class UploadArquivoTvBoxController {
+@RequestMapping(value = "teste-email")
+public class TesteEmailController {
 	
 	private final EmailService EmailService;
 	private final UsuarioService usuarioService;
 	private final ProcessamentoService processamentoService;
 	
 
-	@GetMapping("/upload")
+	@GetMapping("/enviar")
 	public ResponseEntity<String> upload(@RequestParam MultipartFile arquivo, @RequestParam String nome) throws Exception {
 		
-		var usuario = usuarioService.buscarPorId(1l).orElseThrow();
+		var usuario = usuarioService.buscarPorId(1l);
 		var processamento = processamentoService.buscarTodosProcessamentos().get(0);
 		
 		EmailService.enviaEmailCadastroAutorizado(usuario);

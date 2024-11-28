@@ -1,4 +1,4 @@
-package br.com.tcia.eficienciaenergetica.exceptions;
+package br.com.tcia.eficienciaenergetica.exception;
 
 import lombok.Getter;
 
