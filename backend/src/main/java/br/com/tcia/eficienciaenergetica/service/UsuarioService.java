@@ -1,6 +1,6 @@
 package br.com.tcia.eficienciaenergetica.service;
 
-import br.com.tcia.eficienciaenergetica.entity.UsuarioIdentificacao;
+import br.com.tcia.eficienciaenergetica.entity.Usuario;
 import br.com.tcia.eficienciaenergetica.repository.UsuarioIdentificacaoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,15 @@ public class UsuarioService {
 
     private final UsuarioIdentificacaoRepository usuarioRepository;
 
-    public List<UsuarioIdentificacao> buscarTodosUsuarios() {
+    public List<Usuario> buscarTodosUsuarios() {
         return usuarioRepository.findAll();
     }
 
-    public Optional<UsuarioIdentificacao> buscarPorId(Long id) {
+    public Optional<Usuario> buscarPorId(Long id) {
         return usuarioRepository.findById(id);
     }
 
-    public UsuarioIdentificacao salvarUsuario(UsuarioIdentificacao usuario) {
+    public Usuario salvarUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 

@@ -1,4 +1,4 @@
-package br.com.tcia.eficienciaenergetica.exception;
+package br.com.tcia.eficienciaenergetica.exceptions;
 
 public class NegocioException extends SistemaException{
 

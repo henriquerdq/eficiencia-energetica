@@ -20,12 +20,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 @Entity
-@Table(name = "usuario_identificacao")
-public class UsuarioIdentificacao {
+@Table(name = "usuario")
+public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_identificacao_seq")
-    @SequenceGenerator(name = "usuario_identificacao_seq", sequenceName = "usuario_identificacao_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_seq")
+    @SequenceGenerator(name = "usuario_seq", sequenceName = "usuario_seq", allocationSize = 1)
     @Column(nullable = false, unique = true, name = "id")
     private Long id;
 
@@ -48,6 +48,6 @@ public class UsuarioIdentificacao {
     private String idConfirmacaoCadastro;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "perfil_id_fk", nullable = false)
+    @JoinColumn(name = "id_perfil", nullable = false)
     private Perfil perfil;
 }
