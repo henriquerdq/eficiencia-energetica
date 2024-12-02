@@ -1,31 +1,11 @@
 package br.com.tcia.eficienciaenergetica.exception;
 
-public class NegocioException extends SistemaException{
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+public class NegocioException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
-	private String mensagem;
-
-	public NegocioException(String mensagem) {
-		super(mensagem);
-		this.mensagem = mensagem;
-	}
-	
-	public NegocioException(Throwable excecao) {
-		super(excecao);
-	}
-
-	public NegocioException(String mensagem, Throwable excecao) {
-		super(mensagem, excecao);
-		this.mensagem = mensagem;
-	}
-
-	public NegocioException(String mensagem, Object[] parametros, Throwable excecao) {
-		super(mensagem, parametros, excecao);
-		this.mensagem = mensagem;
-	}
-
-	public String getMensagem() {
-		return mensagem;
-	}
 
 }

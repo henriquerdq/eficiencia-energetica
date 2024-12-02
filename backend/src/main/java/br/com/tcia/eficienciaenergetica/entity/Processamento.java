@@ -82,7 +82,7 @@ public class Processamento {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@Fetch(FetchMode.JOIN)
-	@JoinColumn(name = "usuario")
+	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 	
 	public String getDescricaoProcessamento() {

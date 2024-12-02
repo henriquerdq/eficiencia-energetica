@@ -6,9 +6,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import br.com.tcia.eficienciaenergetica.service.EmailService;
 import br.com.tcia.eficienciaenergetica.service.ProcessamentoService;
@@ -23,27 +21,29 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping(value = "teste-email")
 public class TesteEmailController {
 	
-	private final EmailService EmailService;
+	private final EmailService emailService;
 	private final UsuarioService usuarioService;
 	private final ProcessamentoService processamentoService;
 	
 
 	@GetMapping("/enviar")
-	public ResponseEntity<String> upload(@RequestParam MultipartFile arquivo, @RequestParam String nome) throws Exception {
+	public ResponseEntity<String> enviar() throws Exception {
 		
 		var usuario = usuarioService.buscarPorId(1l);
 		var processamento = processamentoService.buscarTodosProcessamentos().get(0);
 		
-		EmailService.enviaEmailCadastroAutorizado(usuario);
-		EmailService.enviaEmailCadastroUsuario(usuario, List.of(usuario));
-		EmailService.enviaEmailCadastroUsuarioAdm(usuario, List.of(usuario));
-		EmailService.enviaEmailErroCSVGenerico(usuario, nome);
-		EmailService.enviaEmailErroCSVSerializado("enviaEmailErroCSVSerializado", "testando o Email", usuario, nome, List.of("1","2","3"), LocalDateTime.now(), LocalDateTime.now().plusMinutes(1));
-		EmailService.enviaEmailRecuperacaoSenhaUsuario(usuario);
-		EmailService.enviaEmailRecuperaSenha(usuario);
-		EmailService.enviaEmailUsuarioAtivado(usuario);
-		EmailService.enviaEmailUsuarioDesativado(usuario);
-		EmailService.enviarEmailProcessamentoRealizado(processamento, "enviarEmailProcessamentoRealizado", LocalDateTime.now(), LocalDateTime.now().plusMinutes(1));
+		emailService.enviaEmailCadastroAutorizado(usuario);
+		emailService.enviaEmailCadastroUsuario(usuario, List.of(usuario));
+		emailService.enviaEmailCadastroUsuarioAdm(usuario, List.of(usuario));
+		emailService.enviaEmailErroCSVGenerico(usuario, "enviaEmailErroCSVGenerico");
+		emailService.enviaEmailErroCSVSerializado("enviaEmailErroCSVSerializado", "testando o Email", usuario, "enviaEmailErroCSVSerializado", 
+				List.of("1","2","3"), LocalDateTime.now(), LocalDateTime.now().plusMinutes(1));
+		emailService.enviaEmailRecuperacaoSenhaUsuario(usuario);
+		emailService.enviaEmailRecuperaSenha(usuario);
+		emailService.enviaEmailUsuarioAtivado(usuario);
+		emailService.enviaEmailUsuarioDesativado(usuario);
+		emailService.enviarEmailProcessamentoRealizado(processamento, "enviarEmailProcessamentoRealizado", 
+				LocalDateTime.now(), LocalDateTime.now().plusMinutes(1));
 		
 		return ResponseEntity.ok().build();
 	}

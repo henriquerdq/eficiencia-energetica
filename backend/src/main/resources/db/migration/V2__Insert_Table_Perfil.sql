@@ -1,6 +1,6 @@
-INSERT INTO perfil(abreviacao, ativado, descricao, nome)
+INSERT INTO perfil(nome, descricao, ativado)
 VALUES
-('CAD', false, 'Cadastro', 'Cadastro'),
-('Adm', true, 'Administrador do sistema', 'Administrador'),
-('ANT', true, 'Analista', 'Analista'),
-('VIS', true, 'Visualização', 'Visualização');
+('CAD', 'Cadastro', true),
+('ADM', 'Administrador', true),
+('ANT', 'Analista', true),
+('VIS', 'Visualização', true);

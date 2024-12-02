@@ -8,9 +8,8 @@ CREATE SEQUENCE perfil_seq
 	
 CREATE TABLE perfil (
 	id int8 DEFAULT nextval('perfil_seq'::regclass) NOT NULL,
-	abreviacao varchar(3) NOT NULL,
-	ativado bool NOT NULL,
-	descricao varchar(250) NULL,
 	nome varchar(100) NOT NULL,
+	descricao varchar(250) NULL,
+	ativado bool NOT NULL,
 	CONSTRAINT perfil_id_pkey PRIMARY KEY (id)
 );
