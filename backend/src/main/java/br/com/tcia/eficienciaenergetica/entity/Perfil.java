@@ -2,7 +2,7 @@ package br.com.tcia.eficienciaenergetica.entity;
 
 import java.io.Serializable;
 
-import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.GrantedAuthority;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "perfil")
-public class Perfil implements GrantedAuthority, Serializable {
+public class Perfil implements Serializable {
 
 	private static final long serialVersionUID = 895971620249797457L;
 
@@ -37,10 +37,5 @@ public class Perfil implements GrantedAuthority, Serializable {
 
     @Column(name = "ativado", nullable = false)
     private Boolean ativado;
-
-	@Override
-	public String getAuthority() {
-		return this.nome;
-	}
 
 }

@@ -1,6 +1,7 @@
 package br.com.tcia.eficienciaenergetica.controller.request;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -25,5 +26,6 @@ public class UsuarioRequest implements Serializable {
     private Boolean cadastroConfirmado;
     private String idConfirmacaoCadastro;
     private Long idPerfil;
+    private LocalDateTime dataCadastro;
 	
 }

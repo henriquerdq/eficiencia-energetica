@@ -18,7 +18,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @AllArgsConstructor
 @RestController
-@RequestMapping(value = "teste-email")
+@RequestMapping(value = "/teste-email")
 public class TesteEmailController {
 	
 	private final EmailService emailService;
@@ -29,8 +29,8 @@ public class TesteEmailController {
 	@GetMapping("/enviar")
 	public ResponseEntity<String> enviar() throws Exception {
 		
-		var usuario = usuarioService.buscarPorId(1l);
-		var processamento = processamentoService.buscarTodosProcessamentos().get(0);
+		var usuario = usuarioService.buscarPorId(2l);
+//		var processamento = processamentoService.buscarTodosProcessamentos().get(0);
 		
 		emailService.enviaEmailCadastroAutorizado(usuario);
 		emailService.enviaEmailCadastroUsuario(usuario, List.of(usuario));
@@ -42,8 +42,8 @@ public class TesteEmailController {
 		emailService.enviaEmailRecuperaSenha(usuario);
 		emailService.enviaEmailUsuarioAtivado(usuario);
 		emailService.enviaEmailUsuarioDesativado(usuario);
-		emailService.enviarEmailProcessamentoRealizado(processamento, "enviarEmailProcessamentoRealizado", 
-				LocalDateTime.now(), LocalDateTime.now().plusMinutes(1));
+//		emailService.enviarEmailProcessamentoRealizado(processamento, "enviarEmailProcessamentoRealizado", 
+//				LocalDateTime.now(), LocalDateTime.now().plusMinutes(1));
 		
 		return ResponseEntity.ok().build();
 	}

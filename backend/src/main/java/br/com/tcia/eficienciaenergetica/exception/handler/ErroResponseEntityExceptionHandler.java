@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import br.com.tcia.eficienciaenergetica.exception.ErroAutenticacaoException;
 import br.com.tcia.eficienciaenergetica.exception.ExceptionResponse;
 import br.com.tcia.eficienciaenergetica.exception.NegocioException;
 
@@ -37,6 +38,17 @@ public class ErroResponseEntityExceptionHandler extends ResponseEntityExceptionH
 				.erro(request.getDescription(false)).build();
 		
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(ErroAutenticacaoException.class)
+	public final ResponseEntity<ExceptionResponse> handleErroAutenticacaoException(
+			Exception ex, WebRequest request) {
+		
+		var exceptionResponse = ExceptionResponse.builder().dataHora(LocalDateTime.now())
+				.mensagem(ex.getMessage())
+				.erro(request.getDescription(false)).build();
+		
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.FORBIDDEN);
 	}
 
 }
